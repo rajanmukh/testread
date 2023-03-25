@@ -14,6 +14,7 @@ global count4;
 global count5;
 global count6;
 global count7;
+temp=0;
 % noErr1=zeros(200,8);
 % noErr2=zeros(200,8);
 % load('refdata2.mat');
@@ -30,6 +31,13 @@ while true
         break;
     elseif readStat == UNSUCCESSFUL
         continue;
-    end   
+    end 
+    %         computation delay
+    if temp==10
+        pause(0.1);
+        temp=0;
+    end
+    temp=temp+1;
+    %
 end
 

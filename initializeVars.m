@@ -3,9 +3,13 @@ function initializeVars()
 %   Detailed explanation goes here
 global groupfolderpath;
 groupfolderpath=cell(1,2);
-groupfolderpath{1,1}='F:\test_read\data1\';
+groupfolderpath{1,1}='data1\';
 % groupfolderpath{1,1}='';
-groupfolderpath{1,2}='F:\test_read\data2\';
+groupfolderpath{1,2}='data2\';
+global available;
+available = false;
+global fileTime;
+fileTime=0;
 global channelsGroup;
 channelsGroup = cell(1,2);
 channelsGroup{1}=1:4;%;
@@ -173,7 +177,6 @@ preambleTest=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,0,0,0].';
 
 global indexAtstamp;
 indexAtstamp=zeros(1,2);
-
 
 end
 
