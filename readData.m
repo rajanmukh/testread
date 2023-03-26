@@ -1,12 +1,10 @@
 function retval=readData()
 %WAITFORDATAAVAILABILITY Summary of this function goes here
 %   Detailed explanation goes here
-global available;
 global groupindex;
 global groupfolderpath;
 global channelsGroup;
 global channelindices;
-global newfiles;
 global fID;
 global timestamp;
 global dbuf;
@@ -16,6 +14,7 @@ global SUCCESSFUL;
 global fname;
 global fileTime;
 global files1;
+global available;
 
 payLoadLength = 131072;
 
@@ -45,9 +44,8 @@ if fID ==-1
                 end
             end
             newfiles=count;
-            available=newfiles>2;
+            available=newfiles>1;
         end
-        
         if available
             if groupindex == 1
                 %name forming logic
@@ -66,16 +64,13 @@ if fID ==-1
             fID = fopen(strcat(groupfolderpath{1,groupindex},fname),'r');read_done=strcat(fname, "  unit",num2str(groupindex))
             channelindices = channelsGroup{groupindex};
             break;
-        end
-        
-        
-        if ~available 
+        else
             if waitseconds >=86400
                 readingOver = true;
                 break;
             end
             pause(.1)
-            waitseconds=waitseconds+.1;                
+            waitseconds=waitseconds+.1;
         end
     end
 end
@@ -101,10 +96,6 @@ if fID~=-1
         fclose(fID);
         delete(strcat(groupfolderpath{1,groupindex},fname));
         fID=-1;
-        newfiles=newfiles-1;
-        if(newfiles<=1)
-            available=false;
-        end
     end
 end
 
